@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Runtime.Serialization;
@@ -138,6 +138,14 @@ public class LbmOptions : SavableReactiveModel, ILayoutOptions
         set => SetUnsavedValue(ref _homeCinema, value);
     }
     bool _homeCinema;
+
+    [DataMember]
+    public bool StopOnLock
+    {
+        get => _stopOnLock;
+        set => SetUnsavedValue(ref _stopOnLock, value);
+    }
+    bool _stopOnLock;
 
     [DataMember]
     public double MaxTravelDistance

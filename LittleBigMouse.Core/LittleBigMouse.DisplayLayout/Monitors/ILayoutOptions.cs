@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -42,6 +42,7 @@ public interface ILayoutOptions : INotifyPropertyChanged // Change IPropertyChan
       public bool StartElevated { get; set; } = false;
       public bool Elevated { get; set; } = true;
       public int DaemonPort { get; set; } = 25196;
+      public bool StopOnLock { get; set; } = false;
 
       public bool AdjustSpeedAllowed { get; } = false;
       public ObservableCollection<string> ExcludedList { get; } = new ObservableCollection<string> { "/game/", "/another/game/" };
@@ -171,6 +172,11 @@ public interface ILayoutOptions : INotifyPropertyChanged // Change IPropertyChan
    /// Daemon port for TCP communication
    /// </summary>
    public int DaemonPort { get; set; }
+
+   /// <summary>
+   /// Stop LittleBigMouse when Windows is locked and restart when unlocked
+   /// </summary>
+   bool StopOnLock { get; set; }
 
    public bool LoopAllowed { get; }
    public ObservableCollection<string> ExcludedList { get; }

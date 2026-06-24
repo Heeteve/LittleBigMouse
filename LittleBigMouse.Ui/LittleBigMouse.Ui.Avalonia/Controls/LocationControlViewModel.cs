@@ -1,4 +1,4 @@
-﻿/*
+/*
   LittleBigMouse.Plugin.Location
   Copyright (c) 2021 Mathieu GRENET.  All right reserved.
 
@@ -52,13 +52,17 @@ public class LocationControlViewModel : ViewModel<MonitorsLayout>, ISavable
     readonly IMainService _mainService;
 
     readonly ILittleBigMouseClientService _service;
+    readonly ISessionLockService _sessionLockService;
+    readonly ILayoutOptions _layoutOptions;
 
-    public LocationControlViewModel(ILittleBigMouseClientService service,IMainService main, ISystemMonitorsService monitorsService)
+    public LocationControlViewModel(ILittleBigMouseClientService service, IMainService main, ISystemMonitorsService monitorsService, ISessionLockService sessionLockService, ILayoutOptions layoutOptions)
     {
         _service = service;
         _mainService = main;
 
         _monitorsService = monitorsService;
+        _sessionLockService = sessionLockService;
+        _layoutOptions = layoutOptions;
 
         SaveCommand = ReactiveCommand.CreateFromTask(
             SaveAsync, 
@@ -96,6 +100,29 @@ public class LocationControlViewModel : ViewModel<MonitorsLayout>, ISavable
 
         service.DaemonEventReceived += StateChanged;
         StateChanged(this,new LittleBigMouseServiceEventArgs(service.State,""));
+
+        _sessionLockService.SessionLockChanged += OnSessionLockChanged;
+        _sessionLockService.StartMonitoring();
+    }
+
+    private async void OnSessionLockChanged(object? sender, bool isLocked)
+    {
+        if (!_layoutOptions.StopOnLock) return;
+
+        if (isLocked)
+        {
+            if (Running)
+            {
+                await StopAsync();
+            }
+        }
+        else
+        {
+            if (!Running && !_dead)
+            {
+                await StartAsync();
+            }
+        }
     }
 
     void StateChanged(object? sender, LittleBigMouseServiceEventArgs e)

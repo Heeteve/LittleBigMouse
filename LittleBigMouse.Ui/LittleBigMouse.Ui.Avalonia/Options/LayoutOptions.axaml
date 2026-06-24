@@ -82,6 +82,11 @@
 									IsEnabled="False"
                                     ToolTip.Tip="Start with elevated privileges."/>
 								
+								<CheckBox
+									Content="Stop on lock screen"
+									IsChecked="{Binding Path=Model.StopOnLock, FallbackValue=false, Mode=TwoWay}"
+									ToolTip.Tip="Automatically stop LittleBigMouse when Windows is locked and restart when unlocked."/>
+
 								<Label>Daemon Priority</Label>
 								<StackPanel Orientation="Horizontal">
 								<Label VerticalAlignment="Center">Hooked</Label>

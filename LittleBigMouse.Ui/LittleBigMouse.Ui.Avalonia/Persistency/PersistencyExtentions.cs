@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using LittleBigMouse.DisplayLayout.Monitors;
 using LittleBigMouse.DisplayLayout;
 using Microsoft.Win32;
@@ -44,6 +44,7 @@ public static class PersistencyExtensions
         @this.AutoUpdate = mainKey.GetOrSet("AutoUpdate", () => key.GetOrSet("AutoUpdate",() => false));
         @this.StartMinimized = mainKey.GetOrSet("StartMinimized", () => key.GetOrSet("StartMinimized",() => false));
         @this.StartElevated = mainKey.GetOrSet("StartElevated", () => key.GetOrSet("StartElevated",() => false));
+        @this.StopOnLock = mainKey.GetOrSet("StopOnLock", () => key.GetOrSet("StopOnLock",() => false));
 
         @this.ExcludedList.Clear();
 
@@ -130,6 +131,7 @@ public static class PersistencyExtensions
         mainKey.SetKey("AutoUpdate", @this.AutoUpdate);
         mainKey.SetKey("StartMinimized", @this.StartMinimized);
         mainKey.SetKey("StartElevated", @this.StartElevated);
+        mainKey.SetKey("StopOnLock", @this.StopOnLock);
 
         var file = @this.GetConfigPath("Excluded.txt",true);
 
