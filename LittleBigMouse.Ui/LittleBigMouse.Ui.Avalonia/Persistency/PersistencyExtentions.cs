@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using LittleBigMouse.DisplayLayout.Monitors;
 using LittleBigMouse.DisplayLayout;
 using Microsoft.Win32;
@@ -49,6 +49,7 @@ public static class PersistencyExtensions
         @this.Pinned = key.GetOrSet("Pinned", () => false);
         @this.AutoUpdate = key.GetOrSet("AutoUpdate", () => false);
         @this.StartMinimized = key.GetOrSet("StartMinimized", () => false);
+        @this.StopOnLock = key.GetOrSet("StopOnLock", () => false);
 
         @this.ExcludedList.Clear();
 
@@ -119,6 +120,7 @@ public static class PersistencyExtensions
         k.SetKey("Pinned", @this.Pinned);
         k.SetKey("AutoUpdate", @this.AutoUpdate);
         k.SetKey("StartMinimized", @this.StartMinimized);
+        k.SetKey("StopOnLock", @this.StopOnLock);
 
         var path = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
         var file = Path.Combine(path,"Mgth","LittleBigMouse","Excluded.txt");

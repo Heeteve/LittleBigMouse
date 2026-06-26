@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 using System.Collections.ObjectModel;
 
 namespace LittleBigMouse.DisplayLayout.Monitors;
@@ -34,6 +34,7 @@ public interface ILayoutOptions
         public bool HomeCinema { get; set; } = false;
         public bool Pinned { get; set; } = false;
         public bool StartMinimized { get; set; } = false;
+        public bool StopOnLock { get; set; } = false;
 
         public bool AdjustSpeedAllowed { get; } = false;
         public ObservableCollection<string> ExcludedList { get; } = ["/game/","/another/game/"];
@@ -133,6 +134,11 @@ public interface ILayoutOptions
     /// Start minimized in tray
     /// </summary>
     bool StartMinimized { get; set; }
+
+    /// <summary>
+    /// Stop LittleBigMouse when Windows is locked and restart when unlocked
+    /// </summary>
+    bool StopOnLock { get; set; }
 
     public bool LoopAllowed { get; }
     public ObservableCollection<string> ExcludedList { get; }

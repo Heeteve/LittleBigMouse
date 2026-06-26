@@ -71,6 +71,11 @@
 									IsChecked="{Binding Path=Model.StartMinimized, FallbackValue=false, Mode=TwoWay}"
 									ToolTip.Tip="Minimize to tray at startup."/>
 
+								<CheckBox
+									Content="Stop on lock screen"
+									IsChecked="{Binding Path=Model.StopOnLock, FallbackValue=false, Mode=TwoWay}"
+									ToolTip.Tip="Automatically stop LittleBigMouse when Windows is locked and restart when unlocked."/>
+
 								<Label>Daemon Priority</Label>
 								<StackPanel Orientation="Horizontal">
 								<Label VerticalAlignment="Center">Hooked</Label>

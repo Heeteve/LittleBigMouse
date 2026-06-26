@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using HLab.Base.Avalonia;
 using LittleBigMouse.DisplayLayout.Monitors;
@@ -114,6 +114,14 @@ public class LbmOptions : ReactiveModel, ILayoutOptions
         set => SetUnsavedValue(ref _homeCinema, value);
     }
     bool _homeCinema;
+
+    [DataMember]
+    public bool StopOnLock
+    {
+        get => _stopOnLock;
+        set => SetUnsavedValue(ref _stopOnLock, value);
+    }
+    bool _stopOnLock;
 
     public double MaxTravelDistance
     {

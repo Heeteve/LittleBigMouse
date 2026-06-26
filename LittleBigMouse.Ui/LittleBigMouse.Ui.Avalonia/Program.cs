@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Reactive;
@@ -114,6 +114,7 @@ internal class Program
                 c.Export<MainBootloader>().As<IBootloader>();
 
                 c.Export<LittleBigMouseClientService>().As<ILittleBigMouseClientService>().Lifestyle.Singleton();
+                c.Export<SessionLockService>().As<ISessionLockService>().Lifestyle.Singleton();
                 c.Export<LbmOptions>().As<ILayoutOptions>().Lifestyle.Singleton();
                 c.Export<ProcessesCollector>().As<IProcessesCollector>().Lifestyle.Singleton();
                 //c.Export<MonitorsLayout>().As<IMonitorsLayout>();
